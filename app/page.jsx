@@ -1,9 +1,9 @@
-import Form from "@/komponenten/Form";
+import Form from "@/komponenten/LoginForm";
 
 export default function Home() {
   return (
     <div>
-      <Form type={""}/>
+      <Form/>
     </div>
   );
 }
