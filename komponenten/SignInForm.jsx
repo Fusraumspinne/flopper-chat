@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { EmailOutlined, LockOutlined, PersonOutline, } from "@mui/icons-material";
 
 export default function SignInForm() {
     const [name, setName] = useState("")
@@ -74,12 +75,23 @@ export default function SignInForm() {
                 )}
 
                 <div>
-                    <input className="form-control transparent-input mt-4 mb-3" type="text" placeholder="Username" onChange={e => setName(e.target.value)} />
-                    <input className="form-control transparent-input mt-4 mb-3" type="email" placeholder="E-Mail" onChange={(e) => setEmail(e.target.value)} />
-                    <input className="form-control transparent-input mb-3" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-                    <button className="btn btn-light mt-4">Sign Up</button>
-                </div>
+                    <div className="d-flex align-items-center justify-content-end">
+                        <input className="form-control transparent-input mt-2 mb-2" type="text" placeholder="Username" onChange={e => setName(e.target.value)} />
+                        <PersonOutline className="icon"/>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-end">
+                        <input className="form-control transparent-input mt-2 mb-2" type="email" placeholder="E-Mail" onChange={(e) => setEmail(e.target.value)} />
+                        <EmailOutlined className="icon"/>
+                    </div>
 
+                    <div className="d-flex align-items-center justify-content-end">
+                        <input className="form-control transparent-input mt-2 mb-2" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                        <LockOutlined className="icon"/>
+                    </div>
+                    
+                    
+                    <button className="btn btn-light mt-4 btn-standart">Sign Up</button>
+                </div>
 
                 <Link href="/" className="text-decoration-none">
                     <p className="text-light mt-2">Already have an account? Login Here</p>

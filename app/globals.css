@@ -78,7 +78,7 @@ body {
     color: white !important;
 }
 
-.btn{
+.btn-standart{
     border-radius: 30px !important;
     border: none !important;
     width: 100% !important;
@@ -88,11 +88,14 @@ body {
 
 .logout-btn {
     border-radius: 10px !important;
-    border: none !important;
     font-size: auto !important;
     padding: 2px !important;
-    height: 30px;
-    width: 60%;
+    height: 50px;
+    width: 50px;
+    color: white;
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important; 
+    color: white !important;
 }
 
 .error{
@@ -122,4 +125,50 @@ body {
     border-radius: 30px;
     background-color: white;
     height: 2px;
+}
+
+.user-link{
+    text-decoration: none;
+    color: white;
+}
+
+.chat-area{
+    height: 420px;
+    overflow: auto;
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.chat-area::-webkit-scrollbar{
+    display: none;
+}
+
+.chat-btn{
+    border-radius: 0 10px 10px 0 !important;
+    border: none !important;
+    width: 20% !important;
+    font-size: 24px !important;
+    padding: 2px !important;
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important; 
+    color: white !important;
+}
+
+.chat-input{
+    border-radius: 10px 0 0 10px !important;
+    width: 80% !important;
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important; 
+    color: white !important;
+}
+
+.chat-input::placeholder {
+    color: white !important;
+}
+
+.icon{
+    position: absolute;
+    color: white;
+    right: 30px;
 }

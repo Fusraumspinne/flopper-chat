@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import { EmailOutlined, LockOutlined, } from "@mui/icons-material";
 
 export default function LoginForm() {
     const [email, setEmail] = useState("")
@@ -49,9 +50,16 @@ export default function LoginForm() {
                 )}
 
                 <div>
-                    <input className="form-control transparent-input mt-4 mb-3" type="email" placeholder="E-Mail" onChange={(e) => setEmail(e.target.value)} />
-                    <input className="form-control transparent-input mb-3" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-                    <button className="btn btn-light mt-4">Login</button>
+                    <div className="d-flex align-items-center justify-content-end">
+                        <input className="form-control transparent-input mt-2 mb-2" type="email" placeholder="E-Mail" onChange={(e) => setEmail(e.target.value)} />
+                        <EmailOutlined className="icon"/>
+                    </div>
+
+                    <div className="d-flex align-items-center justify-content-end">
+                        <input className="form-control transparent-input mt-2 mb-2" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                        <LockOutlined className="icon"/>
+                    </div>
+                    <button className="btn btn-light mt-4 btn-standart">Login</button>
                 </div>
 
 

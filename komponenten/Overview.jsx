@@ -6,6 +6,7 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import React from "react"
 import Link from "next/link"
+import { Logout } from "@mui/icons-material";
 
 export default function Overview() {
     const { data: session } = useSession()
@@ -31,7 +32,7 @@ export default function Overview() {
 
                 <div className="col-4">
                     <div className="d-flex flex-row-reverse mt-2">
-                        <button className="logout-btn" onClick={() => signOut()}>Logout</button>
+                        <button className="logout-btn" onClick={() => signOut()}><Logout className="fs-2"/></button>
                     </div>
                 </div>
             </div>

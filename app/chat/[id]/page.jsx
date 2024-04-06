@@ -1,6 +1,10 @@
 "use client"
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
+import React from "react";
+import { Send } from "@mui/icons-material";
+import Image from "next/image"
+
 
 export default function Chat({ params }) {
     const { data: session } = useSession();
@@ -28,7 +32,10 @@ export default function Chat({ params }) {
                             if (user._id === params.id) {
                                 return (
                                     <div key={user._id}>
-                                        <div className="fs-2 d-flex flex-row">{user.name}</div>
+                                        <div className="fs-2 d-flex align-items-center">
+                                            <Image className="img me-3" src="/Icons/icon1.png" alt="icon" width={40} height={40} />
+                                            {user.name}
+                                        </div>
                                     </div>
                                 );
                             }
@@ -36,9 +43,21 @@ export default function Chat({ params }) {
                     </div>
 
                     <div className="col-3">
-                        <div className="d-flex flex-row-reverse mt-2">
-                            <button className="logout-btn">Back</button>
-                        </div>
+                        
+                    </div>
+                </div>
+
+                <div className="chat-area">
+                    
+                </div>
+
+                <div className="text-area mt-3">
+                    <React.Fragment>
+                        <hr className="custom-hr"/>
+                    </React.Fragment>
+                    <div className="d-flex">
+                        <input className="chat-input form-control col-6" type="text" placeholder="Enter a message..."/>
+                        <button className="chat-btn btn btn-light col-6"><Send/></button>
                     </div>
                 </div>
             </div>
