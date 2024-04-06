@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react"
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import React from "react"
+import Link from "next/link"
 
 export default function Overview() {
     const { data: session } = useSession()
@@ -39,14 +40,18 @@ export default function Overview() {
                 <div className="col-7">
                     {users.map((user, index) => {
                         if (user.email === session?.user?.email) {
-                            return null; 
+                            return null;
                         }
                         return (
                             <React.Fragment key={user._id}>
-                                <div className="d-flex align-items-center mt-3">
-                                    <Image className="img ms-3" src="/Icons/icon1.png" width={40} height={40} />
-                                    <p className="mb-0 ms-2">{user.name}</p>
-                                </div>
+                                <Link href={`/chat/${user._id}`} legacyBehavior>
+                                    <a className="user-link">
+                                        <div className="d-flex align-items-center mt-3">
+                                            <Image className="img ms-3" src="/Icons/icon1.png" alt="icon" width={40} height={40} />
+                                            <p className="mb-0 ms-2">{user.name}</p>
+                                        </div>
+                                    </a>
+                                </Link>
                                 <hr className="custom-hr" />
                             </React.Fragment>
                         );
