@@ -61,7 +61,7 @@ export default function SignInForm() {
     return (
         <div className="blur-big">
             <form onSubmit={handleSubmit}>
-                <h1 className="mt-3">Login</h1>
+                <h1 className="mt-3">Sign Up</h1>
 
                 {error ? (
                     <div className="error mt-4">
