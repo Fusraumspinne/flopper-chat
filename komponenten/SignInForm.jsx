@@ -59,25 +59,30 @@ export default function SignInForm() {
     }
 
     return (
-        <div>
+        <div className="blur-big">
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Username" onChange={e => setName(e.target.value)} />
-                <input type="email" placeholder="E-Mail" onChange={e => setEmail(e.target.value)} />
-                <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+                <h1 className="mt-3">Login</h1>
 
-                <button>
-                    <p>Sign Up</p>
-                </button>
-
-                {error && (
-                    <div>
+                {error ? (
+                    <div className="error mt-4">
                         {error}
+                    </div>
+                ) : (
+                    <div className="error-placeholder mt-4">
+                        Schere
                     </div>
                 )}
 
+                <div>
+                    <input className="form-control transparent-input mt-4 mb-3" type="text" placeholder="Username" onChange={e => setName(e.target.value)} />
+                    <input className="form-control transparent-input mt-4 mb-3" type="email" placeholder="E-Mail" onChange={(e) => setEmail(e.target.value)} />
+                    <input className="form-control transparent-input mb-3" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                    <button className="btn btn-light mt-4">Sign Up</button>
+                </div>
 
-                <Link href="/">
-                    <p>Already have an account? Login Here</p>
+
+                <Link href="/" className="text-decoration-none">
+                    <p className="text-light mt-2">Already have an account? Login Here</p>
                 </Link>
             </form>
         </div>

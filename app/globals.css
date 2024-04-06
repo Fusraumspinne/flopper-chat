@@ -1,0 +1,97 @@
+body {
+    background-image: url('../public/Background/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.blur {
+    width: 350px;
+    height: 400px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    margin: 50px auto;
+    margin-top: 200px;
+    color: white; 
+    font-family: Arial, sans-serif; 
+}
+
+.blur-big {
+    width: 350px;
+    height: 450px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    margin: 50px auto;
+    margin-top: 200px;
+    color: white; 
+    font-family: Arial, sans-serif; 
+}
+
+.blur-large {
+    width: 600px;
+    height: 500px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    margin: 50px auto;
+    margin-top: 200px;
+    color: white; 
+    font-family: Arial, sans-serif; 
+}
+
+.transparent-input {
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important; 
+    border-radius: 30px !important;
+    width: 100% !important;
+    color: white !important;
+}
+
+.transparent-input::placeholder {
+    color: white !important;
+}
+
+.btn{
+    border-radius: 30px !important;
+    border: none !important;
+    width: 100% !important;
+    font-size: 24px !important;
+    padding: 2px !important;
+}
+
+.logout-btn {
+    border-radius: 10px !important;
+    border: none !important;
+    font-size: auto !important;
+    padding: 2px !important;
+    height: 30px;
+    width: 100%;
+}
+
+.error{
+    color: white;
+    font-size: 20px;
+    padding-block: 5px;
+    font-weight: 700;
+    background-color: rgba(255, 0, 0, 0.6);
+    border-radius: 10px;
+}
+
+.error-placeholder{
+    color: transparent;
+    font-size: 20px;
+    padding-block: 5px;
+    font-weight: 700;
+    border-radius: 10px;
+}
