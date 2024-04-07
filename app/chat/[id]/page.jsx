@@ -6,7 +6,6 @@ import React from "react";
 import { Send } from "@mui/icons-material";
 import Image from "next/image"
 
-
 export default function Chat({ params }) {
     const { data: session } = useSession();
     const [users, setUsers] = useState([]);
@@ -18,6 +17,8 @@ export default function Chat({ params }) {
 
     const [messages, setMessages] = useState([])
 
+    const [otherEmail, setOtherEmail] = useState("")
+
     useEffect(() => {
         async function fetchUsers() {
             try {
@@ -28,7 +29,7 @@ export default function Chat({ params }) {
                 console.error("Error fetching users:", error);
             }
         }
-        
+
         fetchUsers();
 
         async function fetchMessages() {
@@ -39,11 +40,10 @@ export default function Chat({ params }) {
         }
 
         fetchMessages()
-
     }, []);
 
     useEffect(() => {
-        const currentTimeInGermany = new Date().toLocaleString("en-US", { timeZone: "Europe/Berlin" });
+        const currentTimeInGermany = new Date().toLocaleString("de-DE", { timeZone: "Europe/Berlin" });
         setTime(currentTimeInGermany);
 
         setSend(session?.user?.email)
@@ -51,8 +51,16 @@ export default function Chat({ params }) {
         const { id } = params;
         const email = users.find(user => user._id === id)?.email;
         setRecieve(email);
-
     }, [params, send, recieve, message, time]);
+
+    useEffect (() => {
+        users.forEach(user => {
+            if (user._id === params.id) {
+              setOtherEmail(user.email);
+              console.log(otherEmail)
+            }
+        });
+    }, [params, users, otherEmail])
 
     const handleSubmit = async (e) => {
         if (!send || !recieve || !message || !time) {
@@ -87,7 +95,7 @@ export default function Chat({ params }) {
             setMessages(data.messages)
             console.log(messages)
         }
-        
+
         fetchMessages()
     }
 
@@ -119,16 +127,37 @@ export default function Chat({ params }) {
                     {messages === "" ? (
                         <div>No Messages</div>
                     ) : (
-                        messages.map((message) => (
-                            <div key={message.id}>
-                                <div>
-                                    <p>{message.send}</p>
-                                    <p>{message.receive}</p>
-                                </div>
-                                <div>
-                                    <p>{message.message}</p>
-                                    <p>{message.time}</p>
-                                </div>
+                        messages.map((message, index) => (
+                            <div key={message.id || index}>
+                                {message.send === session?.user?.email ? (
+                                    <div className="row px-3">
+                                        <div className="col-4">
+
+                                        </div>
+                                        <div className="outgoing-message col-8">
+                                            <div className="d-flex">
+                                                <p>{message.message}</p>
+                                            </div>
+                                            <div className="time d-flex justify-content-end">
+                                                {message.time}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="d-flex align-items-center custom-incoming-box">
+                                        <Image className="img-small ms-3" src="/Icons/icon1.png" alt="icon" width={40} height={40} />
+                                        <div className="px-3">
+                                            <div className="incoming-message">
+                                                <div className="d-flex">
+                                                    <p>{message.message}</p>
+                                                </div>
+                                                <div className="time d-flex justify-content-end">
+                                                    {message.time}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         ))
                     )}
