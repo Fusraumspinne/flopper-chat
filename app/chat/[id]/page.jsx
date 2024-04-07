@@ -176,7 +176,7 @@ export default function Chat({ params }) {
                         ))
                     )}
                 </div>
-
+ 
                 <div className="text-area mt-3">
                     <React.Fragment>
                         <hr className="custom-hr" />
