@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { Send } from "@mui/icons-material";
 import Image from "next/image"
+import { set } from "mongoose";
 
 export default function Chat({ params }) {
     const { data: session } = useSession();
@@ -53,14 +54,25 @@ export default function Chat({ params }) {
         setRecieve(email);
     }, [params, send, recieve, message, time]);
 
-    useEffect (() => {
+    useEffect(() => {
         users.forEach(user => {
             if (user._id === params.id) {
-              setOtherEmail(user.email);
-              console.log(otherEmail)
+                setOtherEmail(user.email);
+                console.log(otherEmail)
             }
         });
     }, [params, users, otherEmail])
+
+    useEffect(() => {
+        const filteredMessages = messages.filter(msg =>
+            (msg.send === session?.user?.email && msg.recieve === otherEmail) ||
+            (msg.recieve === session?.user?.email && msg.send === otherEmail)
+        );
+
+        setFilteredMessages(filteredMessages);
+    }, [messages, session, otherEmail]);
+
+    const [filteredMessages, setFilteredMessages] = useState([]);
 
     const handleSubmit = async (e) => {
         if (!send || !recieve || !message || !time) {
@@ -97,6 +109,8 @@ export default function Chat({ params }) {
         }
 
         fetchMessages()
+
+        setMessage()
     }
 
     return (
@@ -124,10 +138,10 @@ export default function Chat({ params }) {
                 </div>
 
                 <div className="chat-area">
-                    {messages === "" ? (
+                    {filteredMessages === "" ? (
                         <div>No Messages</div>
                     ) : (
-                        messages.map((message, index) => (
+                        filteredMessages.map((message, index) => (
                             <div key={message.id || index}>
                                 {message.send === session?.user?.email ? (
                                     <div className="row px-3">
@@ -168,7 +182,7 @@ export default function Chat({ params }) {
                         <hr className="custom-hr" />
                     </React.Fragment>
                     <div className="d-flex">
-                        <input className="chat-input form-control col-6" type="text" placeholder="Enter a message..." onChange={(e) => setMessage(e.target.value)} />
+                        <input value={message || ''} className="chat-input form-control col-6" type="text" placeholder="Enter a message..." onChange={(e) => setMessage(e.target.value)} />
                         <button onClick={handleSubmit} className="chat-btn btn btn-light col-6"><Send /></button>
                     </div>
                 </div>
