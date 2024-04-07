@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { Send } from "@mui/icons-material";
 import Image from "next/image"
-import { set } from "mongoose";
 
 export default function Chat({ params }) {
     const { data: session } = useSession();
@@ -176,7 +175,7 @@ export default function Chat({ params }) {
                         ))
                     )}
                 </div>
- 
+
                 <div className="text-area mt-3">
                     <React.Fragment>
                         <hr className="custom-hr" />
