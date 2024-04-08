@@ -6,6 +6,8 @@ body {
     background-position: center;
 }
 
+/* Blur-Container */
+
 .blur {
     width: 350px;
     height: 400px;
@@ -66,29 +68,7 @@ body {
     font-family: Arial, sans-serif; 
 }
 
-.transparent-input {
-    background-color: transparent !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important; 
-    border-radius: 30px !important;
-    width: 100% !important;
-    color: white !important;
-}
-
-.transparent-input::placeholder {
-    color: white !important;
-}
-
-.input-container {
-    position: relative;
-}
-
-.icon {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: white;
-}
+/* Buttons */
 
 .btn-standart{
     border-radius: 30px !important;
@@ -110,6 +90,61 @@ body {
     color: white !important;
 }
 
+.chat-btn{
+    border-radius: 0 10px 10px 0 !important;
+    border: none !important;
+    width: 20% !important;
+    font-size: 24px !important;
+    padding: 2px !important;
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important; 
+    color: white !important;
+}
+
+.toggle-btn {
+    border-radius: 10px !important;
+    font-size: auto !important;
+    padding: 2px !important;
+    height: 50px;
+    width: 100px;
+    color: white;
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important; 
+    color: white !important;
+}
+
+/* Input Felder */
+
+.transparent-input {
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important; 
+    border-radius: 30px !important;
+    width: 100% !important;
+    color: white !important;
+}
+
+.transparent-input::placeholder {
+    color: white !important;
+}
+
+.input-container {
+    position: relative;
+}
+
+.chat-input{
+    border-radius: 10px 0 0 10px !important;
+    width: 80% !important;
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important; 
+    color: white !important;
+}
+
+.chat-input::placeholder {
+    color: white !important;
+}
+
+/* Error */
+
 .error{
     color: white;
     font-size: 20px;
@@ -127,63 +162,41 @@ body {
     border-radius: 10px;
 }
 
+/* Icons und Bilder */
+
 .img{
     border-radius: 50% !important;
     border: 1px solid rgba(255, 255, 255, 0.3) !important; 
 }
 
-.custom-hr{
-    border: none;
-    border-radius: 30px;
-    background-color: white;
-    height: 2px;
-}
-
-.user-link{
-    text-decoration: none;
+.icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
     color: white;
 }
 
-.chat-area{
-    height: 420px;
-    overflow-y: auto;
-    border: 1px solid rgba(255, 255, 255, 0.3); 
-    border-radius: 10px;
-    padding: 10px;
-}
-
-.chat-area::-webkit-scrollbar{
-    display: none;
-}
-
-.chat-btn{
-    border-radius: 0 10px 10px 0 !important;
-    border: none !important;
-    width: 20% !important;
-    font-size: 24px !important;
-    padding: 2px !important;
-    background-color: transparent !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important; 
-    color: white !important;
-}
-
-.chat-input{
-    border-radius: 10px 0 0 10px !important;
-    width: 80% !important;
-    background-color: transparent !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important; 
-    color: white !important;
-}
-
-.chat-input::placeholder {
-    color: white !important;
-}
+/*
 
 .icon{
     position: absolute;
     color: white;
     right: 20px;
 }
+
+*/
+
+.img-small{
+    border-radius: 50% !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important; 
+    margin: 0;
+    position: relative;
+    top: 20px;
+    left: 10px;
+}
+
+/* Nachrichten */
 
 .outgoing-message{
     background-color: rgba(255, 255, 255, 0.1);
@@ -210,23 +223,23 @@ body {
     width: 200px;
 }
 
-.time{
-    font-size: 12px;
-    font-weight: 700;
-}
-
-.img-small{
-    border-radius: 50% !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important; 
-    margin: 0;
-    position: relative;
-    top: 20px;
-    left: 10px;
-}
-
 .custom-incoming-box{
     position: relative;
     left: -25px;
+}
+
+/* Chat und User */
+
+.chat-area{
+    height: 420px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.chat-area::-webkit-scrollbar{
+    display: none;
 }
 
 .user-area{
@@ -238,14 +251,21 @@ body {
     display: none;
 }
 
-.toggle-btn {
-    border-radius: 10px !important;
-    font-size: auto !important;
-    padding: 2px !important;
-    height: 50px;
-    width: 100px;
+/* Randmstuff */
+
+.custom-hr{
+    border: none;
+    border-radius: 30px;
+    background-color: white;
+    height: 2px;
+}
+
+.user-link{
+    text-decoration: none;
     color: white;
-    background-color: transparent !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important; 
-    color: white !important;
+}
+
+.time{
+    font-size: 12px;
+    font-weight: 700;
 }
