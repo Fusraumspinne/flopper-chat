@@ -1,35 +1,36 @@
 "use client"
 
-import { signOut } from "next-auth/react"
-import { useSession } from "next-auth/react"
-import { useState, useEffect } from "react"
-import Image from "next/image"
-import React from "react"
-import Link from "next/link"
+import { signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import React from "react";
+import Link from "next/link";
 import { Logout } from "@mui/icons-material";
 
 export default function Overview() {
-    const { data: session } = useSession()
+    const { data: session } = useSession();
+    const [users, setUsers] = useState([]);
 
-    const [users, setUsers] = useState([])
+    const fetchUsers = async () => {
+        try {
+            const response = await fetch("/api/getUsers", {
+                method: "POST",
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setUsers(data.users);
+            } else {
+                console.error("Fehler beim Abrufen der Benutzer:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Fehler beim Abrufen der Benutzer:", error);
+        }
+    };
 
     useEffect(() => {
-        async function fetchUsers() {
-            const res = await fetch("/api/getUsers")
-            const data = await res.json()
-            setUsers(data.users)
-        }
-        fetchUsers()
-    }, [])
-
-    const test = async () => {
-        async function fetchUsers() {
-            const res = await fetch("/api/getUsers")
-            const data = await res.json()
-            setUsers(data.users)
-        }
-        fetchUsers()
-    }
+        fetchUsers();
+    }, []);
 
     return (
         <div className="blur-large">
@@ -69,7 +70,7 @@ export default function Overview() {
                 </div>
 
                 <div className="col-5">
-                    <button onClick={test} className="chat-btn btn btn-light col-6">Test</button>
+                    
                 </div>
             </div>
         </div>
