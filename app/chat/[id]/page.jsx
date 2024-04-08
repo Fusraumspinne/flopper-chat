@@ -19,26 +19,40 @@ export default function Chat({ params }) {
 
     const [otherEmail, setOtherEmail] = useState("")
 
-    useEffect(() => {
-        async function fetchUsers() {
-            try {
-                const res = await fetch("/api/getUsers");
-                const data = await res.json();
+    const fetchUsers = async () => {
+        try {
+            const response = await fetch("/api/getUsers", {
+                method: "POST",
+            });
+            if (response.ok) {
+                const data = await response.json();
                 setUsers(data.users);
-            } catch (error) {
-                console.error("Error fetching users:", error);
+            } else {
+                console.error("Fehler beim Abrufen der Benutzer:", response.statusText);
             }
+        } catch (error) {
+            console.error("Fehler beim Abrufen der Benutzer:", error);
         }
+    };
 
+    const fetchMessages = async () => {
+        try {
+            const response = await fetch("/api/getMessages", {
+                method: "POST",
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setMessages(data.messages);
+            } else {
+                console.error("Fehler beim Abrufen der Benutzer:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Fehler beim Abrufen der Benutzer:", error);
+        }
+    };
+
+    useEffect(() => {
         fetchUsers();
-
-        async function fetchMessages() {
-            const res = await fetch("/api/getMessages")
-            const data = await res.json()
-            setMessages(data.messages)
-            console.log(messages)
-        }
-
         fetchMessages()
     }, []);
 
@@ -100,15 +114,7 @@ export default function Chat({ params }) {
             console.log("Error during sending Message: ", error)
         }
 
-        async function fetchMessages() {
-            const res = await fetch("/api/getMessages")
-            const data = await res.json()
-            setMessages(data.messages)
-            console.log(messages)
-        }
-
         fetchMessages()
-
         setMessage()
     }
 

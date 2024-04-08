@@ -48,7 +48,7 @@ export default function Overview() {
             </div>
 
             <div className="row">
-                <div className="col-7">
+                <div className="col-7 user-area">
                     {users.map((user, index) => {
                         if (user.email === session?.user?.email) {
                             return null;
@@ -69,7 +69,7 @@ export default function Overview() {
                     })}
                 </div>
 
-                <div className="col-5">
+                <div className="col-5 user-area">
                     
                 </div>
             </div>

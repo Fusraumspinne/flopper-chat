@@ -216,3 +216,12 @@ body {
     position: relative;
     left: -25px;
 }
+
+.user-area{
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.user-area::-webkit-scrollbar{
+    display: none;
+}
