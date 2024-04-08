@@ -146,7 +146,7 @@ export default function Chat({ params }) {
                                 return (
                                     <div key={user._id}>
                                         <div className="fs-3 d-flex align-items-center">
-                                            <Image className="img me-2" src="/Icons/icon1.png" alt="icon" width={50} height={50} />
+                                            <Image className="img me-2 ms-1" src="/Icons/icon1.png" alt="icon" width={35} height={35} />
                                             {user.name}
                                         </div>
                                     </div>
@@ -179,7 +179,7 @@ export default function Chat({ params }) {
                                     </div>
                                 ) : (
                                     <div className="d-flex align-items-center custom-incoming-box">
-                                        <Image className="img-small ms-3" src="/Icons/icon1.png" alt="icon" width={40} height={40} />
+                                        <Image className="img-small ms-3" src="/Icons/icon1.png" alt="icon" width={30} height={30} />
                                         <div className="px-3">
                                             <div className="incoming-message">
                                                 <div className="d-flex">
@@ -197,7 +197,7 @@ export default function Chat({ params }) {
                     )}
                 </div>
 
-                <div className="text-area mt-3">
+                <div className="text-area mt-2">
                     <React.Fragment>
                         <hr className="custom-hr" />
                     </React.Fragment>

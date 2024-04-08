@@ -37,7 +37,7 @@ export default function LoginForm() {
     return (
         <div className="blur">
             <form onSubmit={handleSubmit}>
-                <h1 className="mt-3">Login</h1>
+                <h1 className="mt-3 title">Login</h1>
 
                 {error ? (
                     <div className="error mt-4">
@@ -51,12 +51,12 @@ export default function LoginForm() {
 
                 <div>
                     <div className="input-container d-flex align-items-center justify-content-end">
-                        <input className="form-control transparent-input mt-2 mb-2" type="email" placeholder="E-Mail" onChange={(e) => setEmail(e.target.value)} />
+                        <input className="form-control transparent-input" type="email" placeholder="E-Mail" onChange={(e) => setEmail(e.target.value)} />
                         <EmailOutlined className="icon"/>
                     </div>
 
                     <div className="input-container d-flex align-items-center justify-content-end">
-                        <input className="form-control transparent-input mt-2 mb-2" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                        <input className="form-control transparent-input" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                         <LockOutlined className="icon"/>
                     </div>
                     <button className="btn btn-light mt-4 btn-standart">Login</button>
@@ -64,7 +64,7 @@ export default function LoginForm() {
 
 
                 <Link href="/signup" className="text-decoration-none">
-                    <p className="text-light mt-2">Don't have an account? Sign Up Here</p>
+                    <p className="text-light mt-2 small-link">Don't have an account? Sign Up Here</p>
                 </Link>
             </form>
         </div>

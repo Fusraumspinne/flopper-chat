@@ -62,7 +62,7 @@ export default function SignInForm() {
     return (
         <div className="blur-big">
             <form onSubmit={handleSubmit}>
-                <h1 className="mt-3">Sign Up</h1>
+                <h1 className="mt-3 title">Sign Up</h1>
 
                 {error ? (
                     <div className="error mt-4">
@@ -76,16 +76,16 @@ export default function SignInForm() {
 
                 <div>
                     <div className="input-container d-flex align-items-center justify-content-end">
-                        <input className="form-control transparent-input mt-2 mb-2" type="text" placeholder="Username" onChange={e => setName(e.target.value)} />
+                        <input className="form-control transparent-input" type="text" placeholder="Username" onChange={e => setName(e.target.value)} />
                         <PersonOutline className="icon"/>
                     </div>
                     <div className="input-container d-flex align-items-center justify-content-end">
-                        <input className="form-control transparent-input mt-2 mb-2" type="email" placeholder="E-Mail" onChange={(e) => setEmail(e.target.value)} />
+                        <input className="form-control transparent-input" type="email" placeholder="E-Mail" onChange={(e) => setEmail(e.target.value)} />
                         <EmailOutlined className="icon"/>
                     </div>
 
                     <div className="input-container d-flex align-items-center justify-content-end">
-                        <input className="form-control transparent-input mt-2 mb-2" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                        <input className="form-control transparent-input" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                         <LockOutlined className="icon"/>
                     </div>
                     
@@ -94,7 +94,7 @@ export default function SignInForm() {
                 </div>
 
                 <Link href="/" className="text-decoration-none">
-                    <p className="text-light mt-2">Already have an account? Login Here</p>
+                    <p className="text-light mt-2 small-link">Already have an account? Login Here</p>
                 </Link>
             </form>
         </div>

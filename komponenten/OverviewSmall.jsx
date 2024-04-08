@@ -41,16 +41,19 @@ export default function Overview() {
     return (
         <div className="blur-large">
             <div className="row mb-3">
-                <div className="col-6 d-flex flex-column">
+                <div className="col-4 d-flex flex-column">
                     <div className="fs-5 d-flex flex-row">{session?.user?.name}</div>
-                    <div className="d-flex flex-row">{session?.user?.email}</div>
+                    <div className="d-flex flex-row email">{session?.user?.email}</div>
                 </div>
 
-                <div className="col-6">
-                    <div className="d-flex flex-row-reverse mt-2">
+                <div className="col-8">
+                    <div className="d-flex flex-row-reverse">
                         <button className="logout-btn" onClick={() => signOut()}><Logout className="fs-5" /></button>
                         <button className="logout-btn me-2"><Settings className="fs-5" /></button>
-                        <button onClick={allChat} className="toggle-btn me-2">All Chat</button>
+                    </div>
+
+                    <div className="d-flex justify-content-end mt-2">
+                        <button onClick={allChat} className="toggle-btn">All Chat</button>
                     </div>
                 </div>
             </div>
