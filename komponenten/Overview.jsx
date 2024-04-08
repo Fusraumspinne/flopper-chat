@@ -22,7 +22,7 @@ export default function Overview() {
         fetchUsers()
     }, [])
 
-    const test = () =>{
+    const test = async () => {
         async function fetchUsers() {
             const res = await fetch("/api/getUsers")
             const data = await res.json()
