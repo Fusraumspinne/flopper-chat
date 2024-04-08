@@ -22,6 +22,15 @@ export default function Overview() {
         fetchUsers()
     }, [])
 
+    const test = () =>{
+        async function fetchUsers() {
+            const res = await fetch("/api/getUsers")
+            const data = await res.json()
+            setUsers(data.users)
+        }
+        fetchUsers()
+    }
+
     return (
         <div className="blur-large">
             <div className="row mb-3">
@@ -60,7 +69,7 @@ export default function Overview() {
                 </div>
 
                 <div className="col-5">
-
+                    <button className="logout-btn" onClick={() => test()}>Test className="fs-2"/></button>
                 </div>
             </div>
         </div>
