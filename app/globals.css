@@ -78,6 +78,18 @@ body {
     color: white !important;
 }
 
+.input-container {
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+}
+
 .btn-standart{
     border-radius: 30px !important;
     border: none !important;
@@ -170,7 +182,7 @@ body {
 .icon{
     position: absolute;
     color: white;
-    right: 30px;
+    right: 20px;
 }
 
 .outgoing-message{

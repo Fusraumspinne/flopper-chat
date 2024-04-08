@@ -8,7 +8,6 @@ export async function POST(req){
     try{
         await connectMongoDB();
         const users = await User.find(); 
-        console.log(users);
         return NextResponse.json({ users });
     } catch (error) {
         console.log(error);

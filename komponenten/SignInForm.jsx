@@ -75,16 +75,16 @@ export default function SignInForm() {
                 )}
 
                 <div>
-                    <div className="d-flex align-items-center justify-content-end">
+                    <div className="input-container d-flex align-items-center justify-content-end">
                         <input className="form-control transparent-input mt-2 mb-2" type="text" placeholder="Username" onChange={e => setName(e.target.value)} />
                         <PersonOutline className="icon"/>
                     </div>
-                    <div className="d-flex align-items-center justify-content-end">
+                    <div className="input-container d-flex align-items-center justify-content-end">
                         <input className="form-control transparent-input mt-2 mb-2" type="email" placeholder="E-Mail" onChange={(e) => setEmail(e.target.value)} />
                         <EmailOutlined className="icon"/>
                     </div>
 
-                    <div className="d-flex align-items-center justify-content-end">
+                    <div className="input-container d-flex align-items-center justify-content-end">
                         <input className="form-control transparent-input mt-2 mb-2" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                         <LockOutlined className="icon"/>
                     </div>
