@@ -69,7 +69,7 @@ export default function Overview() {
                 </div>
 
                 <div className="col-5">
-                    <button className="logout-btn" onClick={() => test()}>Test className="fs-2"/></button>
+                    <button className="logout-btn" onClick={test}>Test className="fs-2"/></button>
                 </div>
             </div>
         </div>
