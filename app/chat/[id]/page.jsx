@@ -3,8 +3,9 @@
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import React from "react";
-import { Send } from "@mui/icons-material";
+import { Send, ArrowBack } from "@mui/icons-material";
 import Image from "next/image"
+import { useRouter } from "next/navigation";
 
 export default function Chat({ params }) {
     const { data: session } = useSession();
@@ -18,6 +19,8 @@ export default function Chat({ params }) {
     const [messages, setMessages] = useState([])
 
     const [otherEmail, setOtherEmail] = useState("")
+
+    const router = useRouter()
 
     const fetchUsers = async () => {
         try {
@@ -126,17 +129,24 @@ export default function Chat({ params }) {
         setMessage()
     }
 
+    const back = () => {
+        router.push("/dashboard")
+    }
+
     return (
         <div>
             <div className="blur-chat">
                 <div className="row mb-3">
-                    <div className="col-9 d-flex flex-column">
+                    <div className="col-2">
+                        <button onClick={back} className="logout-btn me-3"><ArrowBack className="fs-2" /></button>
+                    </div>
+                    <div className="col-10 d-flex flex-column">
                         {users.map((user) => {
                             if (user._id === params.id) {
                                 return (
                                     <div key={user._id}>
-                                        <div className="fs-2 d-flex align-items-center">
-                                            <Image className="img me-3" src="/Icons/icon1.png" alt="icon" width={40} height={40} />
+                                        <div className="fs-3 d-flex align-items-center">
+                                            <Image className="img me-2" src="/Icons/icon1.png" alt="icon" width={50} height={50} />
                                             {user.name}
                                         </div>
                                     </div>
@@ -145,9 +155,6 @@ export default function Chat({ params }) {
                         })}
                     </div>
 
-                    <div className="col-3">
-
-                    </div>
                 </div>
 
                 <div className="chat-area">

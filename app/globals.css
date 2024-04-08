@@ -237,3 +237,15 @@ body {
 .user-area::-webkit-scrollbar{
     display: none;
 }
+
+.toggle-btn {
+    border-radius: 10px !important;
+    font-size: auto !important;
+    padding: 2px !important;
+    height: 50px;
+    width: 100px;
+    color: white;
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important; 
+    color: white !important;
+}
