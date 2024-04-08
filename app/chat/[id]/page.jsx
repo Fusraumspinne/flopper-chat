@@ -57,6 +57,14 @@ export default function Chat({ params }) {
     }, []);
 
     useEffect(() => {
+        const interval = setInterval(() => {
+            fetchMessages();
+        }, 5000); 
+    
+        return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
         const currentTimeInGermany = new Date().toLocaleString("de-DE", { timeZone: "Europe/Berlin" });
         setTime(currentTimeInGermany);
 
