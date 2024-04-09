@@ -57,6 +57,10 @@ export default function Overview() {
         router.replace("allChat")
     }
 
+    const settings = () => {
+        router.replace("settings")
+    }
+
     const getLastMessage = (email) => {
         let lastMessage = "No Messages";
 
@@ -91,7 +95,7 @@ export default function Overview() {
                         <div className="col-8">
                             <div className="d-flex flex-row-reverse">
                                 <button className="logout-btn" onClick={() => signOut()}><Logout className="fs-5" /></button>
-                                <button className="logout-btn me-2"><Settings className="fs-5" /></button>
+                                <button className="logout-btn me-2" onClick={settings}><Settings className="fs-5" /></button>
                             </div>
 
                             <div className="d-flex justify-content-end mt-2">
@@ -137,7 +141,7 @@ export default function Overview() {
                         <div className="col-6">
                             <div className="d-flex flex-row-reverse mt-2">
                                 <button className="logout-btn" onClick={() => signOut()}><Logout className="fs-5" /></button>
-                                <button className="logout-btn me-2"><Settings className="fs-5" /></button>
+                                <button className="logout-btn me-2" onClick={settings}><Settings className="fs-5" /></button>
                                 <button onClick={allChat} className="toggle-btn me-2">All Chat</button>
                             </div>
                         </div>
