@@ -18,7 +18,7 @@ body {
     text-align: center;
     padding: 20px;
     margin: 50px auto;
-    margin-top: 200px;
+    margin-top: 100px;
     color: white; 
     font-family: Arial, sans-serif; 
 }
@@ -33,7 +33,7 @@ body {
     text-align: center;
     padding: 20px;
     margin: 50px auto;
-    margin-top: 200px;
+    margin-top: 100px;
     color: white; 
     font-family: Arial, sans-serif; 
 }
@@ -48,7 +48,7 @@ body {
     text-align: center;
     padding: 20px;
     margin: 50px auto;
-    margin-top: 200px;
+    margin-top: 100px;
     color: white; 
     font-family: Arial, sans-serif; 
 }
@@ -63,7 +63,7 @@ body {
     text-align: center;
     padding: 20px;
     margin: 50px auto;
-    margin-top: 200px;
+    margin-top: 100px;
     color: white; 
     font-family: Arial, sans-serif; 
 }
@@ -281,25 +281,21 @@ body {
     .blur-big {
         width: 250px;
         height: 350px;
-        margin-top: 100px;
     }
 
     .blur {
         width: 250px;
         height: 320px;
-        margin-top: 100px;
     }
 
     .blur-large {
         width: 250px;
         height: 400px;
-        margin-top: 100px;
     }
 
     .blur-chat {
         width: 250px;
         height: 400px;
-        margin-top: 100px;
     }    
 
     .overview{
