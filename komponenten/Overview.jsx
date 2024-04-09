@@ -77,7 +77,7 @@ export default function Overview() {
         if (lastMessage.length > 30) {
             lastMessage = lastMessage.slice(0, 27) + "..."; 
         }
-    
+
         return lastMessage;
     };
     
