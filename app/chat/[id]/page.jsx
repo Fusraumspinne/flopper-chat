@@ -169,8 +169,8 @@ export default function Chat({ params }) {
 
                                         </div>
                                         <div className="outgoing-message col-8">
-                                            <div className="d-flex">
-                                                <p>{message.message}</p>
+                                            <div className="d-flex justify-content-start">
+                                                {message.message}
                                             </div>
                                             <div className="time d-flex justify-content-end">
                                                 {message.time}
@@ -182,8 +182,8 @@ export default function Chat({ params }) {
                                         <Image className="img-small ms-3" src="/Icons/icon1.png" alt="icon" width={30} height={30} />
                                         <div className="px-3">
                                             <div className="incoming-message">
-                                                <div className="d-flex">
-                                                    <p>{message.message}</p>
+                                                <div className="d-flex justify-content-start">
+                                                    {message.message}
                                                 </div>
                                                 <div className="time d-flex justify-content-end">
                                                     {message.time}

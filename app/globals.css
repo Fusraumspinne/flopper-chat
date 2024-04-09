@@ -233,6 +233,10 @@ body {
     left: -25px;
 }
 
+.last-message{
+    margin-left: 65px;
+}
+
 /* Chat und User */
 
 .chat-area{
@@ -372,4 +376,10 @@ body {
     .email{
         font-size: 12px;
     }
+
+    .user-area{
+        max-height: 270px;
+        overflow-y: auto;
+    }
+    
 }
