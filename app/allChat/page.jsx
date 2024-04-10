@@ -1,7 +1,7 @@
 "use client"
 
 import { useSession } from "next-auth/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import React from "react";
 import { Send, ArrowBack } from "@mui/icons-material";
 import Image from "next/image"
