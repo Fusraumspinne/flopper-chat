@@ -99,15 +99,6 @@ export default function Chat({ params }) {
 
     const [filteredMessages, setFilteredMessages] = useState([]);
 
-    useEffect(() => {
-        scrollToBottom();
-    }, [messages]);
-
-    const scrollToBottom = () => {
-        chatEndRef.current.scrollIntoView({ behavior: "smooth" });
-    };
-
-
     const handleSubmit = async (e) => {
         if (!send || !recieve || !message || !time) {
             console.log("All Inputs are requird.")
@@ -142,6 +133,14 @@ export default function Chat({ params }) {
     const back = () => {
         router.push("/dashboard")
     }
+
+    useEffect(() => {
+        scrollToBottom(); 
+    }, [messages]);
+
+    const scrollToBottom = () => {
+        chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+    };
 
     return (
         <div>
