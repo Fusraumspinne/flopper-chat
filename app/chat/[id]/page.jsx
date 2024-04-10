@@ -1,7 +1,7 @@
 "use client"
 
 import { useSession } from "next-auth/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import React from "react";
 import { Send, ArrowBack } from "@mui/icons-material";
 import Image from "next/image"
@@ -21,6 +21,7 @@ export default function Chat({ params }) {
     const [otherEmail, setOtherEmail] = useState("")
 
     const router = useRouter()
+    const chatEndRef = useRef(null);
 
     const fetchUsers = async () => {
         try {
@@ -97,6 +98,14 @@ export default function Chat({ params }) {
     }, [messages, session, otherEmail]);
 
     const [filteredMessages, setFilteredMessages] = useState([]);
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
+
+    const scrollToBottom = () => {
+        chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+    };
 
     const handleSubmit = async (e) => {
         if (!send || !recieve || !message || !time) {
@@ -192,6 +201,7 @@ export default function Chat({ params }) {
                                         </div>
                                     </div>
                                 )}
+                                 <div ref={chatEndRef} />
                             </div>
                         ))
                     )}
