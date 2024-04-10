@@ -18,6 +18,7 @@ export default function AllChat() {
     const [messages, setMessages] = useState([])
 
     const router = useRouter()
+    const chatEndRef = useRef(null);
 
     const fetchMessages = async () => {
         try {
@@ -54,6 +55,14 @@ export default function AllChat() {
         setSend(session?.user?.email)
         setName(session?.user?.name)
     }, [send, name, message, time]);
+
+    useEffect(() => {
+        scrollToBottom(); 
+    }, [messages]);
+
+    const scrollToBottom = () => {
+        chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+    };
 
     const handleSubmit = async (e) => {
         if (!send || !name || !message || !time) {
@@ -148,6 +157,7 @@ export default function AllChat() {
                     ) : (
                         <div>No Messages</div>
                     )}
+                    <div ref={chatEndRef} />
                 </div>
 
                 <div className="text-area mt-3">
