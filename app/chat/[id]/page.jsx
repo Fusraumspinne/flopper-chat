@@ -104,8 +104,11 @@ export default function Chat({ params }) {
     }, [messages]);
 
     const scrollToBottom = () => {
-        chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+       if (chatEndRef.current) {
+          chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+       }
     };
+
 
     const handleSubmit = async (e) => {
         if (!send || !recieve || !message || !time) {
