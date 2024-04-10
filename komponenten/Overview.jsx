@@ -114,7 +114,7 @@ export default function Overview() {
                                     <Link href={`/chat/${user._id}`} legacyBehavior>
                                         <a className="user-link">
                                             <div className="d-flex align-items-center mt-3">
-                                                <Image className="img ms-3" src="/Icons/icon1.png" alt="icon" width={40} height={40} />
+                                                <Image className="img ms-3" src={`/Icons/${user.icon}.png`} alt="icon" width={40} height={40} />
                                                 <p className="mb-0 ms-2">{user.name}</p>
                                             </div>
                                             <div className="d-flex mt-1 last-message">
@@ -157,7 +157,7 @@ export default function Overview() {
                                     <Link href={`/chat/${user._id}`} legacyBehavior>
                                         <a className="user-link">
                                             <div className="d-flex align-items-center mt-3">
-                                                <Image className="img ms-3" src="/Icons/icon1.png" alt="icon" width={40} height={40} />
+                                                <Image className="img ms-3" src={`/Icons/${user.icon}.png`} alt="icon" width={40} height={40} />
                                                 <p className="mb-0 ms-2">{user.name}</p>
                                             </div>
                                             <div className="d-flex mt-1 last-message">

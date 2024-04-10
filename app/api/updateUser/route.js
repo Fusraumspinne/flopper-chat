@@ -4,7 +4,7 @@ import User from "@/models/user";
 
 export async function PUT(req) {
     try {
-        const { email, name } = await req.json();
+        const { email, name, icon } = await req.json();
 
         await connectMongoDB();
 
@@ -15,6 +15,7 @@ export async function PUT(req) {
         }
 
         user.name = name;
+        user.icon = icon;
         await user.save();
 
         return NextResponse.json({ message: "Benutzername erfolgreich aktualisiert." }, { status: 200 });

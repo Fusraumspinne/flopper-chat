@@ -9,6 +9,7 @@ export default function SignInForm() {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [icon, setIcon] = useState("Default")
     const [error, setError] = useState("")
 
     const router = useRouter()
@@ -43,7 +44,8 @@ export default function SignInForm() {
                 body: JSON.stringify({
                     name,
                     email,
-                    password
+                    password,
+                    icon
                 })
             })
 

@@ -63,8 +63,8 @@ export default function Chat({ params }) {
     useEffect(() => {
         const interval = setInterval(() => {
             fetchMessages();
-        }, 5000); 
-    
+        }, 5000);
+
         return () => clearInterval(interval);
     }, []);
 
@@ -98,6 +98,14 @@ export default function Chat({ params }) {
     }, [messages, session, otherEmail]);
 
     const [filteredMessages, setFilteredMessages] = useState([]);
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages, filteredMessages]);
+
+    const scrollToBottom = () => {
+        chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+    };
 
     const handleSubmit = async (e) => {
         if (!send || !recieve || !message || !time) {
@@ -134,14 +142,6 @@ export default function Chat({ params }) {
         router.push("/dashboard")
     }
 
-    useEffect(() => {
-        scrollToBottom(); 
-    }, [messages]);
-
-    const scrollToBottom = () => {
-        chatEndRef.current.scrollIntoView({ behavior: "smooth" });
-    };
-
     return (
         <div>
             <div className="blur-chat">
@@ -155,7 +155,7 @@ export default function Chat({ params }) {
                                 return (
                                     <div key={user._id}>
                                         <div className="fs-3 d-flex align-items-center">
-                                            <Image className="img me-2 ms-1" src="/Icons/icon1.png" alt="icon" width={35} height={35} />
+                                            <Image className="img me-2 ms-1" src={`/Icons/${user.icon}.png`} alt="icon" width={35} height={35} />
                                             {user.name}
                                         </div>
                                     </div>
@@ -188,7 +188,16 @@ export default function Chat({ params }) {
                                     </div>
                                 ) : (
                                     <div className="d-flex align-items-center custom-incoming-box">
-                                        <Image className="img-small ms-3" src="/Icons/icon1.png" alt="icon" width={30} height={30} />
+                                        {users.map((user) => {
+                                            if (user._id === params.id) {
+                                                return (
+                                                    <div key={user._id}>
+                                                        <Image className="img-small ms-3" src={`/Icons/${user.icon}.png`} alt="icon" width={30} height={30} />
+                                                    </div>
+                                                );
+                                            }
+                                        })}
+
                                         <div className="px-3">
                                             <div className="incoming-message">
                                                 <div className="d-flex justify-content-start">
@@ -200,11 +209,11 @@ export default function Chat({ params }) {
                                             </div>
                                         </div>
                                     </div>
-                                )
+                                )}
                             </div>
                         ))
                     )}
-                   <div ref={chatEndRef} />
+                    <div ref={chatEndRef} />
                 </div>
 
                 <div className="text-area mt-2">
