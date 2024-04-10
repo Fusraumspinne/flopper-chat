@@ -104,9 +104,7 @@ export default function Chat({ params }) {
     }, [messages]);
 
     const scrollToBottom = () => {
-       if (chatEndRef.current) {
-          chatEndRef.current.scrollIntoView({ behavior: "smooth" });
-       }
+        chatEndRef.current.scrollIntoView({ behavior: "smooth" });
     };
 
 
@@ -203,11 +201,11 @@ export default function Chat({ params }) {
                                             </div>
                                         </div>
                                     </div>
-                                )}
-                                 <div ref={chatEndRef} />
+                                )
                             </div>
                         ))
                     )}
+                   <div ref={chatEndRef} />
                 </div>
 
                 <div className="text-area mt-2">
