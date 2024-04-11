@@ -53,8 +53,8 @@ export default function Overview() {
         fetchMessages()
     }, []);
 
-    const allChat = () => {
-        router.replace("allChat")
+    const groups = () => {
+        router.replace("groups")
     }
 
     const settings = () => {
@@ -99,7 +99,7 @@ export default function Overview() {
                             </div>
 
                             <div className="d-flex justify-content-end mt-2">
-                                <button onClick={allChat} className="toggle-btn">All Chat</button>
+                                <button onClick={groups} className="toggle-btn">Goups</button>
                             </div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@ export default function Overview() {
                             <div className="d-flex flex-row-reverse mt-2">
                                 <button className="logout-btn" onClick={() => signOut()}><Logout className="fs-5" /></button>
                                 <button className="logout-btn me-2" onClick={settings}><Settings className="fs-5" /></button>
-                                <button onClick={allChat} className="toggle-btn me-2">All Chat</button>
+                                <button onClick={groups} className="toggle-btn me-2">Groups</button>
                             </div>
                         </div>
                     </div>

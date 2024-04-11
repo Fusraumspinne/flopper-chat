@@ -273,11 +273,35 @@ body {
 }
 
 .user-area{
-    max-height: 350px;
+    height: 390px;
     overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    border-radius: 10px;
 }
 
 .user-area::-webkit-scrollbar{
+    display: none;
+}
+
+.groups-area{
+    height: 330px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    border-radius: 10px;
+}
+
+.groups-area::-webkit-scrollbar{
+    display: none;
+}
+
+.click-user-area{
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    border-radius: 10px;
+}
+
+.click-user-area::-webkit-scrollbar{
     display: none;
 }
 
@@ -369,6 +393,14 @@ body {
         height: 250px;
         overflow-y: auto;
         padding: 5px;
+    }
+
+    .groups-area{
+        height: 250px;
+    }
+
+    .click-user-area{
+        height: 110px;
     }
 
     .time{
