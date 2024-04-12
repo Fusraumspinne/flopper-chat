@@ -10,7 +10,60 @@ import { Logout, Settings, ArrowBack, AddCircleOutlineOutlined } from "@mui/icon
 import { useRouter } from "next/navigation";
 
 export default function Groups() {
+    const { data: session } = useSession();
     const router = useRouter()
+
+    const [groups, setGroups] = useState([])
+
+    const fetchGroups = async () => {
+        try {
+            const response = await fetch("/api/getGroups", {
+                method: "POST",
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setGroups(data.groups);
+            } else {
+                console.error("Fehler beim Abrufen der Gruppen:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Fehler beim Abrufen der Gruppen:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchGroups()
+        filterGroups()
+    }, [])
+
+    useEffect(() => {
+        filterGroups()
+    }, [groups])
+
+    const filterGroups = () => {
+        let groupsToRemove = [];
+    
+        for (let i = 0; i < groups.length; i++) {
+            if (groups[i].admin !== session?.user?.email) {
+                let hasTest4 = false;
+                for (let j = 0; j < groups[i].members.length; j++) {
+                    if (groups[i].members[j] === session?.user?.email) {
+                        hasTest4 = true;
+                        break;
+                    }
+                }
+                if (!hasTest4) {
+                    groupsToRemove.push(i);
+                }
+            }
+        }
+    
+        for (let i = groupsToRemove.length - 1; i >= 0; i--) {
+            groups.splice(groupsToRemove[i], 1);
+        }
+
+        console.log(groups)
+    };    
 
     const back = () => {
         router.push("/dashboard")
@@ -51,9 +104,26 @@ export default function Groups() {
                             </Link>
                             <hr className="custom-hr m-0" />
                         </React.Fragment>
+
+                        {groups.map((group) => (
+                            <React.Fragment key={group._id}>
+                                <Link href={`/groupChat/${group._id}`} legacyBehavior>
+                                    <a className="user-link">
+                                        <div className="d-flex align-items-center mt-3">
+                                            <Image className="img ms-3" src={`/Icons/${group.icon}.png`} alt="icon" width={40} height={40} />
+                                            <p className="mb-0 ms-2">{group.groupName}</p>
+                                        </div>
+                                        <div className="d-flex mt-1 last-message">
+                                            <p className="time">TestAccount: Last Message</p>
+                                        </div>
+                                    </a>
+                                </Link>
+                                <hr className="custom-hr m-0" />
+                            </React.Fragment>
+                        ))}
                     </div>
 
-                    <button className="btn btn-light mt-4 btn-standart" onClick={createGroup}>Create new Group <AddCircleOutlineOutlined/></button>
+                    <button className="btn btn-light mt-4 btn-standart" onClick={createGroup}>Create new Group <AddCircleOutlineOutlined /></button>
                 </div>
             </div>
 
@@ -86,9 +156,26 @@ export default function Groups() {
                             </Link>
                             <hr className="custom-hr m-0" />
                         </React.Fragment>
+
+                        {groups.map((group) => (
+                            <React.Fragment key={group._id}>
+                                <Link href={`/groupChat/${group._id}`} legacyBehavior>
+                                    <a className="user-link">
+                                        <div className="d-flex align-items-center mt-3">
+                                            <Image className="img ms-3" src={`/Icons/${group.icon}.png`} alt="icon" width={40} height={40} />
+                                            <p className="mb-0 ms-2">{group.groupName}</p>
+                                        </div>
+                                        <div className="d-flex mt-1 last-message">
+                                            <p className="time">TestAccount: Last Message</p>
+                                        </div>
+                                    </a>
+                                </Link>
+                                <hr className="custom-hr m-0" />
+                            </React.Fragment>
+                        ))}
                     </div>
 
-                    <button className="btn btn-light mt-4 btn-standart" onClick={createGroup}>Create new Group <AddCircleOutlineOutlined/></button>
+                    <button className="btn btn-light mt-4 btn-standart" onClick={createGroup}>Create new Group <AddCircleOutlineOutlined /></button>
                 </div>
             </div>
         </div>
