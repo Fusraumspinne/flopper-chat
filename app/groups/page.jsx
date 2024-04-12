@@ -12,6 +12,9 @@ import { useRouter } from "next/navigation";
 export default function Groups() {
     const { data: session } = useSession();
     const router = useRouter()
+    const [messages, setMessages] = useState([])
+    const [allMessages, setAllMessages] = useState([])
+    const [filteredGroups, setFilteredGroups] = useState([])
 
     const [groups, setGroups] = useState([])
 
@@ -31,39 +34,58 @@ export default function Groups() {
         }
     };
 
+    const fetchMessages = async () => {
+        try {
+            const response = await fetch("/api/getGroupMessages", {
+                method: "POST",
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setMessages(data.groupMessages);
+            } else {
+                console.error("Fehler beim Abrufen der Messages:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Fehler beim Abrufen der Messages:", error);
+        }
+    };
+
+    const fetchAllMessages = async () => {
+        try {
+            const response = await fetch("/api/getAllMessages", {
+                method: "POST",
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setAllMessages(data.allMessages);
+            } else {
+                console.error("Fehler beim Abrufen der Messages:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Fehler beim Abrufen der Messages:", error);
+        }
+    };
+
     useEffect(() => {
+        fetchAllMessages()
+        fetchMessages()
         fetchGroups()
-        filterGroups()
     }, [])
 
     useEffect(() => {
         filterGroups()
     }, [groups])
-
+    
     const filterGroups = () => {
-        let groupsToRemove = [];
-    
-        for (let i = 0; i < groups.length; i++) {
-            if (groups[i].admin !== session?.user?.email) {
-                let hasTest4 = false;
-                for (let j = 0; j < groups[i].members.length; j++) {
-                    if (groups[i].members[j] === session?.user?.email) {
-                        hasTest4 = true;
-                        break;
-                    }
-                }
-                if (!hasTest4) {
-                    groupsToRemove.push(i);
-                }
-            }
+        if (session) {
+            const filteredGroups = groups.filter(group => {
+                const isAdmin = group.admin === session.user.email;
+                const isMember = group.members.includes(session.user.email);
+                return isAdmin || isMember;
+            });
+            setFilteredGroups(filteredGroups);
         }
-    
-        for (let i = groupsToRemove.length - 1; i >= 0; i--) {
-            groups.splice(groupsToRemove[i], 1);
-        }
-
-        console.log(groups)
-    };    
+    };
 
     const back = () => {
         router.push("/dashboard")
@@ -72,6 +94,36 @@ export default function Groups() {
     const createGroup = () => {
         router.push("/createGroup")
     }
+
+    const getLastMessage = (id, allMessagesBool) => {
+        let lastMessage = "No Messages";
+
+        if (!allMessagesBool) {
+            for (const message of messages) {
+                if (message.groupId === id) {
+                    if (message.send === session?.user?.email) {
+                        lastMessage = "You: " + message.message
+                    } else {
+                        lastMessage = message.name + ": " + message.message;
+                    }
+                }
+            }
+        } else {
+            for (const allMessage of allMessages) {
+                if (allMessage.send === session?.user?.email) {
+                    lastMessage = "You: " + allMessage.message
+                } else {
+                    lastMessage = allMessage.name + ": " + allMessage.message;
+                }
+            }
+        }
+
+        if (lastMessage.length > 30) {
+            lastMessage = lastMessage.slice(0, 27) + "...";
+        }
+
+        return lastMessage;
+    };
 
     return (
         <div>
@@ -98,14 +150,14 @@ export default function Groups() {
                                         <p className="mb-0 ms-2">All Chat</p>
                                     </div>
                                     <div className="d-flex mt-1 last-message">
-                                        <p className="time">Marvin: Letzte Nachricht</p>
+                                        <p className="time">{getLastMessage(0,true)}</p>
                                     </div>
                                 </a>
                             </Link>
                             <hr className="custom-hr m-0" />
                         </React.Fragment>
 
-                        {groups.map((group) => (
+                        {filteredGroups.map((group) => (
                             <React.Fragment key={group._id}>
                                 <Link href={`/groupChat/${group._id}`} legacyBehavior>
                                     <a className="user-link">
@@ -114,7 +166,7 @@ export default function Groups() {
                                             <p className="mb-0 ms-2">{group.groupName}</p>
                                         </div>
                                         <div className="d-flex mt-1 last-message">
-                                            <p className="time">TestAccount: Last Message</p>
+                                            <p className="time">{getLastMessage(group._id, false)}</p>
                                         </div>
                                     </a>
                                 </Link>
@@ -150,14 +202,14 @@ export default function Groups() {
                                         <p className="mb-0 ms-2">All Chat</p>
                                     </div>
                                     <div className="d-flex mt-1 last-message">
-                                        <p className="time">Marvin: Letzte Nachricht</p>
+                                        <p className="time">{getLastMessage(0 ,true)}</p>
                                     </div>
                                 </a>
                             </Link>
                             <hr className="custom-hr m-0" />
                         </React.Fragment>
 
-                        {groups.map((group) => (
+                        {filteredGroups.map((group) => (
                             <React.Fragment key={group._id}>
                                 <Link href={`/groupChat/${group._id}`} legacyBehavior>
                                     <a className="user-link">
@@ -166,7 +218,7 @@ export default function Groups() {
                                             <p className="mb-0 ms-2">{group.groupName}</p>
                                         </div>
                                         <div className="d-flex mt-1 last-message">
-                                            <p className="time">TestAccount: Last Message</p>
+                                            <p className="time">{getLastMessage(group._id, false)}</p>
                                         </div>
                                     </a>
                                 </Link>
