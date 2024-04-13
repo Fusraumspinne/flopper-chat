@@ -39,7 +39,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 - Profilbeschreibung
 - Suchfunktion
-- Gruppen erstellen
 - Gelesen Status
 - Nachrichten bearbeiten, löschen oder auf sie reagieren
 - Vielleicht Pushbenarichtigungen
