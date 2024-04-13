@@ -17,6 +17,10 @@ const messageSchema = new Schema(
         time : {
             type: String,
             required: true
+        }, 
+        gelesen: {
+            type: Boolean,
+            required: true
         }
     },
     { timestamps: true }

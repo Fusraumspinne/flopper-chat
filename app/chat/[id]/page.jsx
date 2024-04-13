@@ -3,7 +3,7 @@
 import { useSession } from "next-auth/react";
 import { useState, useEffect, useRef } from "react";
 import React from "react";
-import { Send, ArrowBack } from "@mui/icons-material";
+import { Send, ArrowBack, Check, DoneAll } from "@mui/icons-material";
 import Image from "next/image"
 import { useRouter } from "next/navigation";
 
@@ -15,6 +15,9 @@ export default function Chat({ params }) {
     const [recieve, setRecieve] = useState()
     const [message, setMessage] = useState()
     const [time, setTime] = useState()
+    const [gelesen, setGelesen] = useState(false)
+    const [filteredMessages, setFilteredMessages] = useState([]);
+    const [gelesenMessages, setGelesenMessages] = useState([])
 
     const [messages, setMessages] = useState([])
 
@@ -97,7 +100,44 @@ export default function Chat({ params }) {
         setFilteredMessages(filteredMessages);
     }, [messages, session, otherEmail]);
 
-    const [filteredMessages, setFilteredMessages] = useState([]);
+    useEffect(() => {
+        const updateUnreadMessages = async () => {
+            const unreadMessages = filteredMessages.filter(message => 
+                message.recieve === session?.user?.email && !message.gelesen
+            );
+    
+            if (unreadMessages.length === 0) {
+                return;
+            }
+    
+            const updatedMessages = unreadMessages.map(message => ({
+                ...message,
+                gelesen: true
+            }));
+    
+            setGelesenMessages(updatedMessages);
+    
+            try {
+                const response = await fetch("/api/updateMessage", {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(updatedMessages.map(({ _id, gelesen }) => ({ _id, gelesen }))),
+                });
+    
+                if (response.ok) {
+                    console.log("Nachrichten erfolgreich aktualisiert");
+                } else {
+                    console.error("Fehler beim Aktualisieren der Nachrichten:", response.statusText);
+                }
+            } catch (error) {
+                console.error("Fehler beim Aktualisieren der Nachrichten:", error);
+            }
+        };
+    
+        updateUnreadMessages();
+    }, [filteredMessages, session]);    
 
     useEffect(() => {
         scrollToBottom();
@@ -121,7 +161,8 @@ export default function Chat({ params }) {
                     send,
                     recieve,
                     message,
-                    time
+                    time,
+                    gelesen
                 })
             })
 
@@ -141,6 +182,8 @@ export default function Chat({ params }) {
     const back = () => {
         router.push("/dashboard")
     }
+
+    //durch alle nachrichten loopen raussuchen mit recive === session email und dann anfrage an db senden um die nachricht mit id ... auf gelesen zu machen
 
     return (
         <div>
@@ -183,6 +226,11 @@ export default function Chat({ params }) {
                                             </div>
                                             <div className="time d-flex justify-content-end">
                                                 {message.time}
+                                                {message.gelesen === true ? (
+                                                    <DoneAll className="ms-2" style={{ fontSize: "16px" }}/>
+                                                ) : (
+                                                    <Check className="ms-2" style={{ fontSize: "16px" }}/>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
