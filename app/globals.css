@@ -105,6 +105,17 @@ body {
     color: white !important;
 }
 
+.search-btn{
+    border-radius: 0 10px 0 0 !important;
+    border: none !important;
+    width: 20% !important;
+    font-size: 24px !important;
+    padding: 2px !important;
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important; 
+    color: white !important;
+}
+
 .toggle-btn {
     border-radius: 10px !important;
     font-size: auto !important;
@@ -166,6 +177,18 @@ body {
 }
 
 .chat-input::placeholder {
+    color: white !important;
+}
+
+.search-input{
+    border-radius: 10px 0 0 0 !important;
+    width: 80% !important;
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important; 
+    color: white !important;
+}
+
+.search-input::placeholder{
     color: white !important;
 }
 
@@ -273,10 +296,10 @@ body {
 }
 
 .user-area{
-    height: 390px;
+    height: 350px;
     overflow-y: auto;
     border: 1px solid rgba(255, 255, 255, 0.3); 
-    border-radius: 10px;
+    border-radius: 0 0 10px 10px;
 }
 
 .user-area::-webkit-scrollbar{
@@ -431,7 +454,7 @@ body {
     }
 
     .user-area{
-        max-height: 270px;
+        max-height: 230px;
         overflow-y: auto;
     }
     

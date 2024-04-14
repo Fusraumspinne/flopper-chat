@@ -6,13 +6,14 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
-import { Logout, Settings } from "@mui/icons-material";
+import { Logout, Settings, Search } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 
 export default function Overview() {
     const { data: session } = useSession();
     const [users, setUsers] = useState([]);
     const router = useRouter()
+    const [searchTerm, setSearchTerm] = useState("")
 
     const [messages, setMessages] = useState([])
 
@@ -66,21 +67,32 @@ export default function Overview() {
 
         for (const message of messages) {
             if ((message.send === email || message.recieve === email) && (message.send === session?.user?.email || message.recieve === session?.user?.email)) {
-                if(message.send === session?.user?.email){
+                if (message.send === session?.user?.email) {
                     lastMessage = "You: " + message.message
-                }else{
-                    lastMessage = message.message; 
+                } else {
+                    lastMessage = message.message;
                 }
             }
         }
 
         if (lastMessage.length > 30) {
-            lastMessage = lastMessage.slice(0, 27) + "..."; 
+            lastMessage = lastMessage.slice(0, 27) + "...";
         }
 
         return lastMessage;
     };
-    
+
+    const filterUsers = (user) => {
+        if (!searchTerm) {
+            return true;
+        }
+
+        return (
+            user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            user.email.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    };
+
 
     return (
         <div>
@@ -104,8 +116,13 @@ export default function Overview() {
                         </div>
                     </div>
 
+                    <div className="d-flex">
+                        <input className="search-input form-control col-6" type="text" placeholder="Enter a Username..."  onChange={(e) => setSearchTerm(e.target.value)} />
+                        <button className="search-btn btn btn-light col-6"><Search /></button>
+                    </div>
+
                     <div className="user-area">
-                        {users.map((user, index) => {
+                        {users.filter(filterUsers).map((user, index) => {
                             if (user.email === session?.user?.email) {
                                 return null;
                             }
@@ -147,8 +164,13 @@ export default function Overview() {
                         </div>
                     </div>
 
+                    <div className="d-flex">
+                        <input className="search-input form-control col-6" type="text" placeholder="Enter a Username..." onChange={(e) => setSearchTerm(e.target.value)} />
+                        <button className="search-btn btn btn-light col-6"><Search /></button>
+                    </div>
+
                     <div className="user-area">
-                        {users.map((user, index) => {
+                        {users.filter(filterUsers).map((user, index) => {
                             if (user.email === session?.user?.email) {
                                 return null;
                             }

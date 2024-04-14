@@ -38,7 +38,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Coming Features
 
 - Profilbeschreibung
-- Suchfunktion
 - Nachrichten bearbeiten, löschen oder auf sie reagieren
 - Vielleicht Pushbenarichtigungen
 - Gruppen bearbeiten
