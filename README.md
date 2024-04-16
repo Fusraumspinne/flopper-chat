@@ -40,3 +40,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - Profilbeschreibung
 - Nachrichten bearbeiten, löschen oder auf sie 
 - Gruppen bearbeiten
+- neue Nachrichten anzeigen Homepage
