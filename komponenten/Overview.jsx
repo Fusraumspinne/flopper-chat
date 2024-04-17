@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
-import { Logout, Settings, Search } from "@mui/icons-material";
+import { Logout, Settings, Search, MarkEmailUnreadOutlined } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 
 export default function Overview() {
@@ -16,6 +16,7 @@ export default function Overview() {
     const [searchTerm, setSearchTerm] = useState("")
 
     const [messages, setMessages] = useState([])
+    const [newMessages, setNewMessages] = useState([])
 
     const fetchUsers = async () => {
         try {
@@ -53,6 +54,10 @@ export default function Overview() {
         fetchUsers();
         fetchMessages()
     }, []);
+
+    useEffect(() => {
+        filterMessages()
+    }, [messages])
 
     const groups = () => {
         router.replace("groups")
@@ -93,6 +98,15 @@ export default function Overview() {
         );
     };
 
+    const filterMessages = () => {
+        const filteredMessages = messages.filter(message => {
+            return !message.gelesen && message.recieve === session?.user?.email;
+        });
+
+        setNewMessages(prevMessages => [...prevMessages, ...filteredMessages]);
+    };
+
+
 
     return (
         <div>
@@ -117,7 +131,7 @@ export default function Overview() {
                     </div>
 
                     <div className="d-flex">
-                        <input className="search-input form-control col-6" type="text" placeholder="Enter a Username..."  onChange={(e) => setSearchTerm(e.target.value)} />
+                        <input className="search-input form-control col-6" type="text" placeholder="Enter a Username..." onChange={(e) => setSearchTerm(e.target.value)} />
                         <button className="search-btn btn btn-light col-6"><Search /></button>
                     </div>
 
@@ -130,9 +144,12 @@ export default function Overview() {
                                 <React.Fragment key={user._id}>
                                     <Link href={`/chat/${user._id}`} legacyBehavior>
                                         <a className="user-link">
-                                            <div className="d-flex align-items-center mt-3">
-                                                <Image className="img ms-3" src={`/Icons/${user.icon}.png`} alt="icon" width={40} height={40} />
-                                                <p className="mb-0 ms-2">{user.name}</p>
+                                            <div className="d-flex justify-content-between align-items-center">
+                                                <div className="d-flex align-items-center mt-3">
+                                                    <Image className="img ms-3" src={`/Icons/${user.icon}.png`} alt="icon" width={40} height={40} />
+                                                    <p className="mb-0 ms-2">{user.name}</p>
+                                                </div>
+                                                <MarkEmailUnreadOutlined className="mt-3 me-2" />
                                             </div>
                                             <div className="d-flex mt-1 last-message">
                                                 <p className="time">{getLastMessage(user.email)}</p>
@@ -178,9 +195,24 @@ export default function Overview() {
                                 <React.Fragment key={user._id}>
                                     <Link href={`/chat/${user._id}`} legacyBehavior>
                                         <a className="user-link">
-                                            <div className="d-flex align-items-center mt-3">
-                                                <Image className="img ms-3" src={`/Icons/${user.icon}.png`} alt="icon" width={40} height={40} />
-                                                <p className="mb-0 ms-2">{user.name}</p>
+                                            <div className="d-flex justify-content-between align-items-center">
+                                                <div className="d-flex align-items-center mt-3">
+                                                    <Image className="img ms-3" src={`/Icons/${user.icon}.png`} alt="icon" width={40} height={40} />
+                                                    <p className="mb-0 ms-2">{user.name}</p>
+                                                </div>
+                                                {(() => {
+                                                    let unreadMessageFound = false;
+                                                    for (let message of newMessages) {
+                                                        if (user.email === message.send) {
+                                                            unreadMessageFound = true;
+                                                            break; 
+                                                        }
+                                                    }
+                                                    if (unreadMessageFound) {
+                                                        return <MarkEmailUnreadOutlined className="mt-3 me-4" />;
+                                                    }
+                                                    return null;
+                                                })()}
                                             </div>
                                             <div className="d-flex mt-1 last-message">
                                                 <p className="time">{getLastMessage(user.email)}</p>
