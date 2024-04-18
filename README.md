@@ -37,6 +37,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Coming Features
 
-- Profilbeschreibung(eher nicht)
+- Profilbeschreibung(eher nicht) 
 - Nachrichten bearbeiten, löschen oder auf sie(eher nicht) 
 - Gruppen bearbeiten(wahrscheinlich)
