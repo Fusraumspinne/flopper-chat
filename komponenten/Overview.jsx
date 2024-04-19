@@ -149,7 +149,19 @@ export default function Overview() {
                                                     <Image className="img ms-3" src={`/Icons/${user.icon}.png`} alt="icon" width={40} height={40} />
                                                     <p className="mb-0 ms-2">{user.name}</p>
                                                 </div>
-                                                <MarkEmailUnreadOutlined className="mt-3 me-2" />
+                                                {(() => {
+                                                    let unreadMessageFound = false;
+                                                    for (let message of newMessages) {
+                                                        if (user.email === message.send) {
+                                                            unreadMessageFound = true;
+                                                            break; 
+                                                        }
+                                                    }
+                                                    if (unreadMessageFound) {
+                                                        return <MarkEmailUnreadOutlined className="mt-3 me-4" />;
+                                                    }
+                                                    return null;
+                                                })()}
                                             </div>
                                             <div className="d-flex mt-1 last-message">
                                                 <p className="time">{getLastMessage(user.email)}</p>
