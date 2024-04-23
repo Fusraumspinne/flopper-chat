@@ -18,6 +18,7 @@ export default function GroupChat({ params }) {
     const [name, setName] = useState("")
     const [time, setTime] = useState("")
     const [messages, setMessages] = useState([])
+    const [filteredMessages, setFilteredMessages] = useState([])
     const [users, setUsers] = useState([])
 
     const router = useRouter()
@@ -76,6 +77,10 @@ export default function GroupChat({ params }) {
         fetchMessages()
         fetchUsers()
     }, [])
+
+    useEffect(() => {
+        
+    }, [messages])
 
     useEffect(() => {
         const interval = setInterval(() => {
