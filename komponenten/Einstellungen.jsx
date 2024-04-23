@@ -128,6 +128,26 @@ export default function Einstellungen() {
                             <button onClick={() => setIcon("Spaghettimonster")} className="icon-btn img-btn me-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url('/Icons/Spaghettimonster.png')" }}></button>
                         </div>
                     </div>
+                    <div className="row mx-2 mt-2">
+                        <div className="col-2">
+                            <button onClick={() => setIcon("Admin")} className="icon-btn img-btn me-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url('/Icons/Admin.png')" }}></button>
+                        </div>
+                        <div className="col-2">
+                            <button onClick={() => setIcon("Affe")} className="icon-btn img-btn me-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url('/Icons/Affe.png')" }}></button>
+                        </div>
+                        <div className="col-2">
+                            <button onClick={() => setIcon("Hantel")} className="icon-btn img-btn me-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url('/Icons/Hantel.png')" }}></button>
+                        </div>
+                        <div className="col-2">
+                            <button onClick={() => setIcon("Höhere Macht")} className="icon-btn img-btn me-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url('/Icons/Höhere Macht.png')" }}></button>
+                        </div>
+                        <div className="col-2">
+                            <button onClick={() => setIcon("Nielpferd")} className="icon-btn img-btn me-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url('/Icons/Nielpferd.png')" }}></button>
+                        </div>
+                        <div className="col-2">
+                            <button onClick={() => setIcon("Programmierer")} className="icon-btn img-btn me-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url('/Icons/Programmierer.png')" }}></button>
+                        </div>
+                    </div>
                 </div>
 
                 <button className="btn btn-light mt-4 btn-standart" onClick={handleUpdate}>Aktualisieren</button>
