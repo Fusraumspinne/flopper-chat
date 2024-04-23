@@ -79,7 +79,9 @@ export default function GroupChat({ params }) {
     }, [])
 
     useEffect(() => {
-        
+        const filterMessages = messages.filter(message => message.groupId === params.id);
+
+        setFilteredMessages(filterMessages)
     }, [messages])
 
     useEffect(() => {
@@ -168,11 +170,11 @@ export default function GroupChat({ params }) {
                 </div>
 
                 <div className="chat-area">
-                    {messages ? (
-                        messages === "" ? (
+                    {filteredMessages ? (
+                        filteredMessages === "" ? (
                             <div>No Messages</div>
                         ) : (
-                            messages.map((message, index) => (
+                            filteredMessages.map((message, index) => (
                                 <div key={message.id || index}>
                                     {message.send === session?.user?.email ? (
                                         <div className="row px-3">
