@@ -93,8 +93,7 @@ export default function Overview() {
         }
 
         return (
-            user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            user.email.toLowerCase().includes(searchTerm.toLowerCase())
+            user.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
     };
 
