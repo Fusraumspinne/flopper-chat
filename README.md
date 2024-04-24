@@ -40,3 +40,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - Profilbeschreibung(eher nicht) 
 - Nachrichten bearbeiten, löschen oder auf sie(eher nicht) 
 - Gruppen bearbeiten(wahrscheinlich)
+- automatisches Scrollen beim lesen ausschalten
