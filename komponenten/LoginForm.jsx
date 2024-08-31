@@ -51,7 +51,7 @@ export default function LoginForm() {
 
                 <div>
                     <div className="input-container d-flex align-items-center justify-content-end">
-                        <input className="form-control transparent-input" type="email" placeholder="E-Mail" onChange={(e) => setEmail(e.target.value)} />
+                        <input className="form-control transparent-input" type="text" placeholder="E-Mail" onChange={(e) => setEmail(e.target.value)} />
                         <EmailOutlined className="icon"/>
                     </div>
 
