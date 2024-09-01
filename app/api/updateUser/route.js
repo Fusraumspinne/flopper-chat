@@ -8,7 +8,7 @@ export async function PUT(req) {
 
         await connectMongoDB();
 
-        const user = await User.find({ email });
+        const user = await User.findMany({ email });
 
         if (!user) {
             return NextResponse.json({ message: "Benutzer nicht gefunden." }, { status: 404 });
